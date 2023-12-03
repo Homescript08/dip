@@ -1,0 +1,28 @@
+//High Pass Filter
+
+
+img = imread("D:\bird.jpeg");
+gray=rgb2gray(img);
+
+subplot(2,1,1);
+imshow(gray);
+
+filter=fspecial('laplacian');
+lap=imfilter(gray,filter);
+
+subplot(2,1,2);
+imshow(lap);
+
+//low pass filter
+
+img = imread("D:\bird.jpeg");
+gray=rgb2gray(img);
+
+subplot(2,1,1);
+imshow(gray);
+
+filter=fspecial('gaussian',3);
+avg_=imfilter(gray,filter);
+
+subplot(2,1,2);
+imshow(avg_);
