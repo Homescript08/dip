@@ -1,0 +1,78 @@
+To write and execute image processing programs using point processing method 
+
+a. Obtain Negative image  
+
+img=imread("D:\bird.jpeg");  
+Gray = rgb2gray(img);   
+[M,N] = size(img);   
+neg = zeros(M,N,'uint8');   
+for i = 1:M   
+for j =1:N   
+neg(i,j)=255-Gray(i,j);   
+end   
+end   
+subplot(1,2,1) 
+imshow(img); 
+subplot(1, 2, 2), 
+imshow(neg); 
+
+ 
+
+b. Obtain Flip image  
+
+im=imread("D:\bird.jpeg"); 
+ 
+
+subplot(1,2,1); 
+imshow(im); 
+ 
+
+[x,y]=size(im); 
+//M=y(1); 
+//N=x(2); 
+ 
+
+flip=zeros(x,y,3,'uint8'); 
+ 
+
+flip=flipdim(im,2); 
+ 
+
+subplot(1,2,2); 
+ 
+
+imshow(uint8(flip)); 
+
+ 
+
+ 
+
+c. Thresholding  
+
+img=imread("D:\bird.jpeg"); 
+ 
+
+[M,N]=size(img); 
+ 
+
+gray=zeros(M,N,'uint8'); 
+ 
+
+for i=1:M 
+ 
+
+for j=1:N 
+ 
+
+gray(i,j)= uint8 (double ( img(i,j,1) ) *0.2989 )+ uint8( double ( img (i,j,2) )*0.5870)+ uint8 ( double ( img (i,j,3))*0.114); 
+ 
+
+end 
+ 
+
+end 
+ 
+
+imshow(gray) 
+
+ 
