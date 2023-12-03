@@ -1,0 +1,103 @@
+//B)Read and display image in SCILAB/MATLAB 
+
+img=imread("D:\bird.jpeg"); 
+
+ 
+imshow(img);  
+
+ 
+[M,N]=size(img); 
+
+ 
+
+//C)Resize given image  
+
+imgNew=imresize(img,[100,100]);  
+
+imshow(imgNew); 
+
+ 
+
+//D)Convert given color image into gray-scale image 
+
+gray=rgb2gray(img); 
+
+imshow(gray); 
+
+ 
+
+//E)Convert given color/gray-scale image into black & white image. 
+
+bw_image=im2bw(gray,0.5); 
+ 
+
+imshow(bw_image); 
+
+ 
+
+//F)Draw image profile   
+
+improfile(img)  
+
+  
+
+//G) Separate color image in three R G & B planes   
+
+R=zeros(M,N,3,'uint8');  
+
+ 
+G=zeros(M,N,3,'uint8');  
+
+ 
+B=zeros(M,N,3,'uint8');  
+ 
+
+R(:,:,1)=img(:,:,1);   
+ 
+
+G(:,:,2)=img(:,:,2);   
+ 
+
+B(:,:,3)=img(:,:,3);  
+ 
+
+figure, imshow(uint8(R));  
+ 
+
+figure, imshow(uint8(G));  
+ 
+
+figure, imshow(uint8(B)); 
+
+ 
+
+//H)Create color image using R, G and B three separate planes  
+
+RGB=zeros(M,N,3,'uint8');   
+ 
+
+for i=1:M   
+
+ 
+    for j=1:N   
+         
+
+RGB(i,j,1) = R(i,j,1);   
+         
+
+RGB(i,j,2) = G(i,j,2);   
+         
+
+RGB(i,j,3) = B(i,j,3);
+end  
+
+ 
+end 
+ 
+ 
+
+ 
+
+//j)Write given 2-D data in image  
+
+file. imwrite(img,"D:\bird.jpeg"); 
