@@ -1,0 +1,101 @@
+//Apply FFT on given image
+/**
+mat=[0.0 1.0 1.0;
+1.0 0.0 1.0;
+1.0 1.0 0.0]
+subplot(2,1,1)
+title('Original Image')
+imshow(mat);
+
+af=fft2(mat);
+f_shift=fftshift(af);
+subplot(2,1,2)
+title('After applying fft')
+imshow(f_shift);
+**/
+// or
+
+
+img = imread("D:\bird.jpeg");
+a=rgb2gray(img);
+subplot(2,2,1)
+title('Original Image')
+imshow(a);
+af2=fft2(im2double(a));
+subplot(2,2,2)
+title('After applying fft')
+imshow(mat2gray(log(1+abs(fftshift(af)))));
+
+==========================================
+//Perform Low Pass and High Pass Filtering in frequency domain
+img = imread("D:\bird.jpeg");
+a=rgb2gray(img)
+subplot(4,2,1)
+title('Original Image')
+imshow(a);
+af=fft2(im2double(a));
+f=mkfftfilter(a,'gauss',0.5)
+f1=mkfftfilter(a,'butterworth1',0.4)
+f2=mkfftfilter(a,'binary',0.2)
+//low pass filter
+l1=fftshift(f).*af;
+l2=fftshift(f1).*af;
+l3=fftshift(f2).*af;
+//high pass filter
+hf=mkfftfilter(a,'gauss',0.1)
+hf1=mkfftfilter(a,'butterworth1',0.08)
+hf2=mkfftfilter(a,'binary',0.05)
+h1=fftshift(1-hf).*af;
+h2=fftshift(1-hf1).*af;
+h3=fftshift(1-hf2).*af;
+/**
+subplot(4,2,2)
+imshow(l1)
+
+subplot(4,2,3)
+imshow(l2)
+
+subplot(4,2,4)
+imshow(l3)
+
+subplot(4,2,5)
+imshow(h1)
+
+subplot(4,2,6)
+imshow(h2)
+
+subplot(4,2,7)
+imshow(h3)
+**/
+//Apply IFFT to reconstruct the image
+
+img1=real(ifft(l1));
+img2=real(ifft(l2));
+img3=real(ifft(l3));
+img4=real(ifft(h1));
+img5=real(ifft(h2));
+img6=real(ifft(h3));
+subplot(4,2,2)
+title('Low Pass Gauss')
+imshow(img1);
+
+subplot(4,2,3)
+title('Low Pass butterworth')
+imshow(img2);
+
+subplot(4,2,4)
+title('Low Pass Binary')
+imshow(img3);
+
+subplot(4,2,5)
+title('High Pass Gauss')
+imshow(img4);
+
+subplot(4,2,6)
+title('High Pass Butterworth')
+imshow(img5);
+
+subplot(4,2,7)
+title('High Pass Binary')
+imshow(img6);
+
