@@ -1,0 +1,73 @@
+To write and execute programs for image arithmetic operations 
+
+a. Addition of two images  
+
+image1 = imread("D:\programs\script1.png");  
+
+image2 = imread("D:\programs\script2.png");  
+
+//[M,N] = size(image2);  
+//image1.resize([M,N]); 
+
+img_add = imadd(image1 , image2)  
+imshow(img_add) 
+
+ 
+
+b. Subtract one image from other image  
+
+image1 = imread("D:\programs\script1.png");  
+ 
+
+image2 = imread("D:\programs\script2.png");  
+
+//[M,N] = size(image2);  
+//image1.resize([M,N]); 
+ 
+
+img_add = imsubtract(image1 , image2)  
+
+ 
+imshow(img_add) 
+
+ 
+
+c. Calculate mean value of image 
+
+img1=imread("D:\programs\bird2.jpeg");  
+
+ 
+[M,N]=size(img1);  
+
+gray_img=rgb2gray(img1);  
+ 
+ 
+
+ans=0;  
+ 
+ 
+
+for x=1:M  
+ 
+ 
+
+for j=1:N  
+ 
+ 
+
+ans = (uint32(ans) + gray_img(x,j));  
+ 
+ 
+
+end  
+
+ 
+end  
+
+avg=double(ans)/(M*N)  
+ 
+ 
+
+disp(avg) 
+
+ 
