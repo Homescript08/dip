@@ -1,0 +1,20 @@
+//Median Filter
+
+img = imread("D:\bird.jpeg");
+gray=rgb2gray(img);
+
+subplot(2,2,1);
+title('Original Image');
+imshow(gray);
+
+
+img_snp=imnoise(gray,'salt & pepper',0.4);
+
+subplot(2,2,2);
+title('Salt n Pepper Noise');
+imshow(img_snp);
+
+median_filter=immedian(img_snp,3);
+subplot(2,2,3);
+title('Median Filter');
+imshow(median_filter);
