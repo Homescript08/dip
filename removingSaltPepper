@@ -1,0 +1,15 @@
+//Removing Salt and Pepper Noise
+img = imread("D:\bird.jpeg");
+gray=rgb2gray(img);
+
+img_snp=imnoise(gray,'salt & pepper');
+
+subplot(2,2,1);
+title('Salt and Pepper Noise');
+imshow(img_snp);
+
+filter=fspecial('average',3);
+avg=imfilter(img_snp,filter);
+subplot(2,2,2);
+title('Image with filter applied');
+imshow(avg);
