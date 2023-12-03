@@ -1,0 +1,17 @@
+//Minimizing Gaussian Noise
+
+img = imread("D:\bird.jpeg");
+gray=rgb2gray(img);
+
+gaussianNoise=imnoise(gray,'gaussian');
+subplot(2,2,1);
+title('Gaussian Noise');
+imshow(gaussianNoise);
+
+filter=fspecial('gaussian',3);
+
+gaussian_on_gaussianNoise=imfilter(gaussianNoise,filter)
+
+subplot(2,2,2);
+title('Image with Gaussian filter applied');
+imshow(gaussian_on_gaussianNoise);
