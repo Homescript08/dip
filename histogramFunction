@@ -1,0 +1,14 @@
+img = imread("D:\bird.jpeg");
+I=rgb2gray(img);
+Iequal=imhistequal(I);
+[qtd,level]=imhist(I);
+[qtde,levele]=imhist(Iequal);
+subplot(2,2,1);
+imshow(I);
+subplot(2,2,2);
+bar(level,qtd);
+
+subplot(2,2,3);
+imshow(Iequal);
+subplot(2,2,4);
+bar(levele,qtde);
