@@ -1,0 +1,77 @@
+//Histogram without using functions
+/**
+img = imread("D:\bird.jpeg");
+gray=rgb2gray(img);
+[M,N]=size(gray);
+arr=zeros(256,1,'uint32');
+arr1=zeros(256,1,'uint32');
+for i=1:256
+    arr1(i)=i;
+end
+
+for i=1:M
+    for j=1:N
+        arr(gray(i,j)+1)=1+arr(gray(i,j)+1);
+    end
+end
+
+bar(arr1,arr); //create a vertical bar graph
+xlabel('0-255');
+ylabel('frequency');
+**/
+//equalisation of image
+img = imread("D:\bird.jpeg");
+[M,N]=size(gray);
+gray=rgb2gray(img);
+
+//for getting frequency of gray levels
+arr=zeros(256,1,'uint32');
+arr1=zeros(256,1,'uint32');
+for i=1:256
+    arr1(i)=i;
+end
+
+//getting gray value of a pixel and increment the arr[gray value]
+for i=1:M
+    for j=1:N
+        d=gray(i,j);
+        arr(d+1)=arr(d+1)+1;
+    end
+end
+
+pd=zeros(256,1,'double');
+//probability distribution of gray levels
+for i=1:256
+    pd(i)=double(arr(i))/double(M*N);
+end
+cdd=zeros(256,1,'double');
+temp=0.0
+//cumulative probability distribution
+for i=1:256
+    temp=temp+pd(i);
+    cdd(i)=temp;
+end
+fin=zeros(256,1,'double');
+//multiplying with max gray level
+for i=1:256
+    fin(i)=round(cdd(i)*255);
+end
+
+bar(arr1,fin); //create a vertical bar graph
+xlabel('0-255'); //label the x axis
+ylabel('frequency'); //label the y axis
+
+img_s=zeros(M,N,'uint8');
+//replacing image pixels with equalised value of gray levels 
+for i=1:M
+    for j=1:N
+        curr=gray(i,j);
+        img_s(i,j)=fin(curr+1);
+    end
+end
+
+subplot(2,2,3);
+imshow(img_s)
+
+
+
