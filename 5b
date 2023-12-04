@@ -27,6 +27,84 @@ gray=rgb2gray(img);
 //for getting frequency of gray levels
 arr=zeros(256,1,'uint32');
 arr1=zeros(256,1,'uint32');
+
+// ALTERNATE
+img = imread("D:\bird.jpeg");
+gray=rgb2gray(img);
+[M,N]=size(gray);
+arr=zeros(256,1,'uint32');
+arr1=zeros(256,1,'uint32');
+
+for i=1:256
+    arr1(i)=i;
+end
+
+for i=1:M
+    for j=1:N
+        arr(gray(i,j)+1)=(1+arr(gray(i,j)+1));
+    end
+end
+
+//bar(arr1,arr);
+//xlabel('0-255')
+//ylabel('frequency');
+//equalisaton
+img= imread("C:\Users\CSLab\Desktop\abhishekchandyDIP\dog2.png");
+//img=imresize(img,[100,100]);
+gray=rgb2gray(img);
+[M,N]=size(gray);
+subplot(2,2,1);
+imshow(img);
+subplot(2,2,2)
+imshow(gray);
+arr=zeros(256,1,'uint64');
+arr1=zeros(256,1,'uint64');
+for i=1:256
+    arr1(i)= i;
+end
+
+for i=1:M
+    for j=1:N
+        d=gray(i,j);
+        arr(d+1)=arr(d+1)+1;
+end
+end
+pp=zeros(256,1,'double')
+//pd of gray levels
+for i=1:256
+    pd(i)=double(arr(i))
+end
+
+cdd=zeros(256,1,'double');
+temp=0;
+
+//cumulatve dist
+for i=1:256
+    temp=temp+pd(i)
+    cdd(i)=temp;
+end
+//multply col with max value
+fin=zeros(256,1,'double')
+for i=1:256
+    fin(i)=round(cdd(i)*255);
+end
+subplot(2,2,3)
+bar(arr1,fin);
+xlabel('0255');
+ylabel('freqicney')
+imgs=zeros(M,N,'uint64');
+for i=1:M
+    for j=1:N
+        curr=gray(i,j)
+        imgs(i,j)=fin(curr+1)
+end
+end
+
+//subplot(2,2,3);
+//imshow(imgs)
+
+
+
 for i=1:256
     arr1(i)=i;
 end
